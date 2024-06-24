@@ -1,0 +1,13 @@
+#images {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    align-content: center;
+
+}
+figure {
+    width: 150px;
+}
