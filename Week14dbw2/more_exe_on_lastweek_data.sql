@@ -24,3 +24,57 @@ JOIN user_task ON user.id = user_id
 JOIN task ON task.id=task_id
 
 --  Data Normalization: https://github.com/HackYourFuture-CPH/databases/blob/main/lesson2/Database_normalization.pdf
+
+
+
+-- initial table
+CREATE TABLE student_courses (
+    student_id INT,
+    student_name VARCHAR(255),
+    student_address VARCHAR(255),
+    course_id INT,
+    course_name VARCHAR(255),
+    instructor_name VARCHAR(255),
+    grade CHAR(1)
+);
+-- 1NF
+-- Rule: Eliminate repeating groups by ensuring that each field contains only atomic (indivisible) values and that each record is unique.
+
+-- 2NF
+--Rule: Remove partial dependencies. Ensure that all non-key attributes are fully functional dependent on the primary key.
+
+-- 3NF
+-- Rule: Remove transitive dependencies. Ensure that non-key attributes are not dependent on other non-key attributes. 
+
+CREATE TABLE student (
+    student_id INT unsigned PRIMARY KEY,
+    student_name VARCHAR(255) NOT NULL,
+    student_address VARCHAR(255) NOT NULL,
+);
+CREATE TABLE courses (
+    course_id INT unsigned PRIMARY KEY,
+    course_name VARCHAR(255) UNIQUE NOT NULL,
+    instructor_id NOT NULL,
+    FOREIGN KEY (instructor_id) REFERENCES instructor(instructor_id),
+);
+CREATE TABLE student_courses (
+    student_id INT unsigned,
+    course_id INT unsigned,
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    grade CHAR(1)
+);
+
+CREATE Table instructor (
+    instructor_id INT  PRIMARY KEY
+    instructor_name VARCHAR(255) NOT NULL
+)
+
+
+
+
+
+
+
+
