@@ -17,3 +17,10 @@ INSERT INTO `user_task` (`user_id`, `task_id`) VALUES
 (2,3),
 (3,3),
 (4,3);
+
+SELECT user.name, task.title 
+FROM user 
+JOIN user_task ON user.id = user_id 
+JOIN task ON task.id=task_id
+
+--  Data Normalization: https://github.com/HackYourFuture-CPH/databases/blob/main/lesson2/Database_normalization.pdf
