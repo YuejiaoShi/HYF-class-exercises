@@ -1,3 +1,4 @@
+-- Active: 1719748709143@@127.0.0.1@3306@DB1W1Exercise
 SET NAMES utf8mb4;
 
 CREATE TABLE `user` (
@@ -44,6 +45,7 @@ insert into user (id, name, email, phone) values (10, 'إلياس', 'elias@githu
 insert into user (id, name, email, phone) values (11, 'Donald Duck', 'donald@duck.com', NULL);
 insert into user (id, name, email, phone) values (12, 'Adam Smith', 'smith@bla.com', NULL);
 
+
 -- Statuses
 insert into status (id, name) values (1, 'Not started');
 insert into status (id, name) values (2, 'In progress');
@@ -88,3 +90,112 @@ insert into task (id, title, description, created, updated, due_date, status_id,
 insert into task (id, title, description, created, updated, due_date, status_id, user_id) values (35, 'Learn about NoSQL databases', 'MongoDB, CouchDB, etc.', '2017-10-20 01:41:53', '2017-10-04 07:19:56', '2017-12-23 10:13:42', 2, NULL);
 
 
+CREATE TABLE `sale` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `date` DATE NOT NULL,
+  `amount` DECIMAL(10, 2) NOT NULL,
+  `quantity` INT(10) unsigned NOT NULL,
+  `product_id` int(10) unsigned NOT NULL,
+  `customer_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+INSERT INTO `sale` (`date`, `amount`, `quantity`, `product_id`, `customer_id`) VALUES
+('2023-06-01', 100.00, 5, 1, 1),
+('2023-06-01', 150.00, 3, 2, 2),
+('2023-06-02', 200.00, 4, 1, 3),
+('2023-06-02', 50.00, 2, 3, 1),
+('2023-06-03', 300.00, 6, 2, 4),
+('2023-06-03', 250.00, 5, 3, 2),
+('2023-06-04', 400.00, 8, 1, 3),
+('2023-06-04', 100.00, 1, 2, 1),
+('2023-06-05', 150.00, 3, 3, 4),
+('2023-06-05', 200.00, 4, 1, 2);
+
+SELECT * FROM user 
+
+DELETE FROM `user` WHERE id=13;
+DELETE FROM `user` WHERE id=14;
+
+-- Avg sale amount
+SELECT AVG(amount) As avg_sale_amount FROM sale;
+
+-- Count sale
+SELECT COUNT(*) As total_sale FROM sale
+
+-- Total quantity sold
+SELECT SUM(quantity) As total_quantity_sold FROM sale
+
+-- Min sale amount
+SELECT MIN(amount) As min_sale_amount FROM sale
+
+-- Max sale amount
+SELECT MAX(amount) As max_sale_amount FROM sale
+
+-- Total sales group by product
+SELECT product_id,Count(*) As total_sale_by_product FROM sale GROUP BY product_id
+
+-- Average quantity sold per customer
+SELECT customer_id,AVG(quantity) As avg_quantity_per_customer FROM sale GROUP BY customer_id
+
+-- *********** JOIN ********** --
+-- Inner join
+SELECT user.name, task.title FROM user INNER JOIN task ON user.id = task.user_id;
+
+-- left join
+SELECT user.name, task.title FROM user LEFT JOIN task ON user.id = task.user_id;
+
+-- right join
+SELECT user.name, task.title FROM user RIGHT JOIN task ON user.id = task.user_id;
+
+-- Outer join
+SELECT user.name, task.title FROM user LEFT JOIN task ON user.id = task.user_id 
+UNION SELECT user.name, task.title FROM user RIGHT JOIN task ON user.id = task.user_id;
+
+-- Outer join
+SELECT user.name, task.title FROM user CROSS JOIN task;
+
+SELECT * FROM user, task;
+
+
+-- Homework
+SELECT * FROM task;
+-- 1. Find out how many tasks are in the task table
+--  Answer: 35
+SELECT COUNT(*) AS tasks_amount FROM task;
+
+-- 2. Find out how many tasks in the task table do not have a valid due date
+--  Answer: 8
+SELECT COUNT(*) AS tasks_with_valid_due_amount FROM task WHERE due_date IS NULL;
+
+-- 3. Find all the tasks that are marked as done
+SELECT task.title AS done_tasks FROM task JOIN status ON task.status_id = status.id WHERE status.name = 'done';-- 12 tasks
+
+-- 4. Find all the tasks that are not marked as done
+SELECT task.title AS not_done_tasks FROM task WHERE status_id != (SELECT id FROM status WHERE name='done'); -- 23 tasks
+
+-- 5. Get all the tasks, sorted with the most recently created first
+SELECT * FROM task ORDER BY created DESC;
+
+-- 6. Get the single most recently created task
+SELECT * FROM task ORDER BY created DESC LIMIT 1;
+
+-- 7. Get the title and due date of all tasks where the title or description contains database
+SELECT task.title, task.due_date FROM task WHERE title LIKE '%database%' OR description LIKE '%database%';
+
+-- 8. Get the title and status (as text) of all tasks
+SELECT task.title AS task_title, status.name AS task_status 
+FROM task JOIN status ON task.status_id = status.id;
+
+-- 9. Get the name of each status, along with a count of how many tasks have that status
+SELECT status.name AS task_status, Count(*) AS task_amount
+FROM task JOIN status ON task.status_id = status.id
+GROUP BY status.name
+
+-- 10. Get the names of all statuses, sorted by the status with most tasks first
+SELECT status.name AS task_status, Count(*) AS task_amount
+FROM task JOIN status ON task.status_id = status.id
+GROUP BY status.name
+ORDER BY task_amount DESC
