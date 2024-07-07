@@ -86,39 +86,6 @@ INSERT INTO product_float (name, price) VALUES ('Product B', 19.999999);
 INSERT INTO product_float (name, price) VALUES ('Product A', 0.01);
 
 
-CREATE Table student (
-    student_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE
-);
-ALTER Table student ADD COLUMN phone VARCHAR(100);
-
-CREATE TABLE course (
-    course_id INT unsigned PRIMARY KEY,
-    course_name VARCHAR(100) NOT NULL,
-    teacher VARCHAR(100) NOT NULL,
-    FOREIGN KEY (instructor_id) REFERENCES instructor(instructor_id),
-    description VARCHAR(100) NOT NULL,
-    FOREIGN KEY (instructor_id) REFERENCES instructor(instructor_id),
-);
-
-CREATE TABLE student_course (
-    student_id INT unsigned NOT NULL,
-    course_id INT unsigned NOT NULL,
-    PRIMARY KEY (student_id, course_id),
-    FOREIGN KEY (student_id) REFERENCES student(student_id),
-    FOREIGN KEY (course_id) REFERENCES course(course_id)
-);
-
-CREATE TABLE score (
-    score_id INT unsigned AUTO_INCREMENT PRIMARY KEY,
-    student_id INT unsigned NOT NULL,
-    course_id INT unsigned NOT NULL,
-    score DECIMAL(5,2),
-    FOREIGN KEY (student_id) REFERENCES student(student_id),
-    FOREIGN KEY (course_id) REFERENCES course(course_id)
-);
-
 
 
 
