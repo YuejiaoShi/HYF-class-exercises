@@ -1,4 +1,6 @@
 
+-- databases IDE: DataGrip
+
 --Many-to-Many (Junction Table)
 CREATE TABLE `user_task` (
   `user_id` int(10) unsigned NOT NULL,
