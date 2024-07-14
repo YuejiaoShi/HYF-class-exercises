@@ -9,10 +9,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "your user",
+  host: "127.0.0.1",
+  user: "root",
   password: "my-secret-pw",
-  database: "injection",
+  database: "SQL_injection_exercise",
   multipleStatements: true,
   ssl: false,
 });
@@ -65,3 +65,6 @@ app.get("/users", (req, res) => {
     return res.json(results);
   });
 });
+
+// http://127.0.0.1:3000/users?username=admin
+// http://localhost:3000/vulnerable-users?username=admin' OR 1='1
