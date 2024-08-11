@@ -48,12 +48,22 @@ app.use("/helloo", helloRouter);
 
 // rewrite the adding page with query instead params
 // /add?num1=10&num2=15
-app.get("/add", (req, res) => {
-  const num1 = parseFloat(req.query.num1);
-  const num2 = parseFloat(req.query.num2);
+// app.get("/add", (req, res) => {
+//   const num1 = parseFloat(req.query.num1);
+//   const num2 = parseFloat(req.query.num2);
 
-  if (isNaN(num1) || isNaN(num2)) {
-    return res.status(400).send("Invalid numbers");
-  }
-  res.send(`The sum is ${num1 + num2}`);
+//   if (isNaN(num1) || isNaN(num2)) {
+//     return res.status(400).send("Invalid numbers");
+//   }
+//   res.send(`The sum is ${num1 + num2}`);
+// });
+
+// any numbers of num:
+// /add?num1=10&num2=15&num3=3
+app.get("/add", (req, res) => {
+  const sum = Object.values(req.query).reduce(
+    (sum, num) => sum + parseInt(num),
+    0
+  );
+  res.send(`The sum is ${sum}`);
 });
