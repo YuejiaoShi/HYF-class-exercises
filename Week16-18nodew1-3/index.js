@@ -7,3 +7,4 @@ import { add } from "./add.js";
 
 console.log("hhhh");
 console.log(add(2, 5));
+
