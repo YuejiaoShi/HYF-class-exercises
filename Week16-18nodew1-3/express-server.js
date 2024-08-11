@@ -60,10 +60,21 @@ app.use("/helloo", helloRouter);
 
 // any numbers of num:
 // /add?num1=10&num2=15&num3=3
+// app.get("/add", (req, res) => {
+//   const sum = Object.values(req.query).reduce(
+//     (sum, num) => sum + parseInt(num),
+//     0
+//   );
+//   res.send(`The sum is ${sum}`);
+// });
+
+// give a key many values in query
+// /add?num=10&num=15&num=3
 app.get("/add", (req, res) => {
-  const sum = Object.values(req.query).reduce(
+  const sum = Object.values(req.query.num).reduce(
     (sum, num) => sum + parseInt(num),
     0
   );
+  console.log(req.query);
   res.send(`The sum is ${sum}`);
 });
