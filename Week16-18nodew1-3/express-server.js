@@ -8,15 +8,15 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/add/:num1/:num2", (req, res) => {
-  const num1 = parseFloat(req.params.num1);
-  const num2 = parseFloat(req.params.num2);
+// app.get("/add/:num1/:num2", (req, res) => {
+//   const num1 = parseFloat(req.params.num1);
+//   const num2 = parseFloat(req.params.num2);
 
-  if (isNaN(num1) || isNaN(num2)) {
-    return res.status(400).send("Invalid numbers");
-  }
-  res.send(`The sum is ${num1 + num2}`);
-});
+//   if (isNaN(num1) || isNaN(num2)) {
+//     return res.status(400).send("Invalid numbers");
+//   }
+//   res.send(`The sum is ${num1 + num2}`);
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
@@ -45,3 +45,15 @@ app.use((req, res, next) => {
 });
 
 app.use("/helloo", helloRouter);
+
+// rewrite the adding page with query instead params
+// /add?num1=10&num2=15
+app.get("/add", (req, res) => {
+  const num1 = parseFloat(req.query.num1);
+  const num2 = parseFloat(req.query.num2);
+
+  if (isNaN(num1) || isNaN(num2)) {
+    return res.status(400).send("Invalid numbers");
+  }
+  res.send(`The sum is ${num1 + num2}`);
+});
