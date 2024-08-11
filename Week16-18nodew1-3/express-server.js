@@ -38,4 +38,10 @@ app.listen(port, () => {
 //   }, 1000);
 // });
 
+app.use((req, res, next) => {
+  console.log("Time:", Date.now());
+  next();
+  // res.send("bye");
+});
+
 app.use("/helloo", helloRouter);
