@@ -10,7 +10,7 @@ const middlewares = jsonServer.defaults();
 const router      = jsonServer.router(db);
 const port        = 3000;
 
-server.use(userRouter);
+server.use('/api/users',userRouter);
 
 server.use(middlewares);
 server.use(router);
