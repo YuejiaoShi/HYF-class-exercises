@@ -17,8 +17,7 @@ usersRouter.get("/:userID", async (req, res) => {
     const user = await connection
       .select("*")
       .from("users")
-      .where("id", req.params.userID)
-      .first();
+      .where("id", req.params.userID).first();
     res.json(user);
   } catch (error) {
     console.error("Error fetching all users:", error);

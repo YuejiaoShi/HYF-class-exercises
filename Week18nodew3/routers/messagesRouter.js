@@ -25,3 +25,23 @@ messagesRouter.get("/:messageID", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+messagesRouter.post("/", async (req, res) => {
+  console.log(req.body);
+  try {
+    const likes = req.body.likes
+      ? JSON.stringify(req.body.likes)
+      : JSON.stringify([]);
+    const [id] = await connection("messages")
+      .insert({
+        ...req.body,
+        likes,
+      })
+      .into("messages");
+
+    res.status(201).json(messages[id]);
+  } catch (error) {
+    console.error("Error post message:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
