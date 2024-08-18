@@ -11,6 +11,8 @@ const middlewares = jsonServer.defaults();
 const router      = jsonServer.router(db);
 const port        = 3000;
 
+server.use(express.static('public'));
+server.use(express.json());
 server.use('/api/users',usersRouter);
 server.use('/api/messages',messagesRouter);
 
