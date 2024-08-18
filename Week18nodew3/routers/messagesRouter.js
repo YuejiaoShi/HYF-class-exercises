@@ -39,7 +39,7 @@ messagesRouter.post("/", async (req, res) => {
       })
       .into("messages");
 
-    res.status(201).json(messages[id]);
+    res.status(201).json([id]);
   } catch (error) {
     console.error("Error post message:", error);
     res.status(500).json({ error: error.message });
