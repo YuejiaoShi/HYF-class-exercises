@@ -3,11 +3,14 @@ import express  from 'express';
 
 import db from './db.json' with { type: "json" };
 import connection from './connection.js';
+import { userRouter } from './routers/usersRouter.js';
 
 const server      = express();
 const middlewares = jsonServer.defaults();
 const router      = jsonServer.router(db);
 const port        = 3000;
+
+server.use(userRouter);
 
 server.use(middlewares);
 server.use(router);
