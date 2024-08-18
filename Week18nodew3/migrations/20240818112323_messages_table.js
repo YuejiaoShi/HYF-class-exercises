@@ -8,7 +8,7 @@ export const up = async function (knex) {
     table.string("body").notNullable();
     table.integer("authorId").notNullable();
     table.json("likes").notNullable().defaultTo([]);
-    table.timestamp("timestamp").notNullable();
+    table.bigInteger("timestamp").notNullable();
   });
 };
 
