@@ -1,9 +1,10 @@
 import jsonServer from 'json-server' ;
+import express  from 'express';
 
 import db from './db.json' with { type: "json" };
 import connection from './connection.js';
 
-const server      = jsonServer.create();
+const server      = express();
 const middlewares = jsonServer.defaults();
 const router      = jsonServer.router(db);
 const port        = 3000;
