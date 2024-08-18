@@ -4,6 +4,7 @@ import express  from 'express';
 import db from './db.json' with { type: "json" };
 import connection from './connection.js';
 import { usersRouter } from './routers/usersRouter.js';
+import { messagesRouter } from './routers/messagesRouter.js';
 
 const server      = express();
 const middlewares = jsonServer.defaults();
@@ -11,6 +12,7 @@ const router      = jsonServer.router(db);
 const port        = 3000;
 
 server.use('/api/users',usersRouter);
+server.use('/api/messages',messagesRouter);
 
 server.use(middlewares);
 server.use('/api',router);
