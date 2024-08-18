@@ -13,7 +13,7 @@ const port        = 3000;
 server.use('/api/users',userRouter);
 
 server.use(middlewares);
-server.use(router);
+server.use('/api',router);
 server.listen(port, () => {
   console.log(`JSON Server is running on port ${port}`);
 
