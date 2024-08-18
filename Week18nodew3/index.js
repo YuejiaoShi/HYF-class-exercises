@@ -14,7 +14,7 @@ server.listen(port, () => {
   console.log(`JSON Server is running on port ${port}`);
 
   (async function () {
-    const output = await connection.select('*').from('Meal').limit(1);
+    const output = await connection.select('*').from('users').limit(1);
     console.log(output);
   })()
 });
