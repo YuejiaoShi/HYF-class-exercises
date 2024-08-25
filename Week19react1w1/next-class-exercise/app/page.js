@@ -11,7 +11,7 @@ import ProfileImage from "@/components/ProfileImage";
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <Header />
       <Greeting />
       <Cards />
