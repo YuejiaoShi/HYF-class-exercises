@@ -1,9 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-
-function Header() {
-  return <header>Welcome!!!</header>;
-}
+import Header from "@/components/Header";
 
 function Intro() {
   return <div>Introduction ....</div>;
@@ -14,7 +11,7 @@ function Greeting() {
 }
 function Card() {
   return (
-    <div>
+    <div className={styles.card}>
       <h2>Card Title</h2>
       <p>This is a card component</p>
     </div>
@@ -37,11 +34,17 @@ function Person() {
 }
 
 function Button() {
-  return <button className="btn btn-primary">Button</button>;
+  return (
+    <button
+      className={`bg-blue-500 hover:bg-blue-700 text-white font-bold ${styles.description}`}
+    >
+      Button
+    </button>
+  );
 }
 
 function DangerButton() {
-  return <button className="btn btn btn-primary">Dangerous</button>;
+  return <button className="btn btn-primary">Dangerous</button>;
 }
 
 function TextInput() {
@@ -57,6 +60,7 @@ function ProfileImage() {
 export default function Home() {
   return (
     <div className="">
+      <Header />
       <Greeting />
       <Cards />
       <Person />
