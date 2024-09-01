@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Counter from "@/components/Counter";
 import Layout from "@/components/Layout";
+import TodoList from "@/components/TodoList";
 import ToggleContent from "@/components/ToggleContent";
 const buttonProps = {
   text: "Button Text",
@@ -37,6 +38,7 @@ function About() {
         />
         <ToggleContent show={true} content={triggerContextProps.content} />
         <Counter />
+        <TodoList />
       </Layout>
     </>
   );
