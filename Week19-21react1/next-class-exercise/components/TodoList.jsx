@@ -24,7 +24,9 @@ function TodoList() {
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <button type="submit">Add todo</button>
+        <button type="submit" className="bg-rose-300">
+          Add todo
+        </button>
       </form>
       <ul>
         {todos.map((todo, index) => (
@@ -33,7 +35,9 @@ function TodoList() {
           </li>
         ))}
       </ul>
-      <button onClick={handleDelete}>Delete todo</button>
+      <button className="bg-rose-300" onClick={handleDelete}>
+        Delete todo
+      </button>
     </>
   );
 }
