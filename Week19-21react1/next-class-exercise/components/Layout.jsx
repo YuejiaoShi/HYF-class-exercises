@@ -1,9 +1,9 @@
 function Layout({ children }) {
   return (
     <div>
-      <header>HEADER</header>
+      <header className="text-4xl">HEADER</header>
       <main>{children}</main>
-      <footer>FOOTER</footer>
+      <footer className="text-4xl">FOOTER</footer>
     </div>
   );
 }
