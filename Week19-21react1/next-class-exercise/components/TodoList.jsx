@@ -3,10 +3,12 @@ import { useState } from "react";
 
 function TodoList() {
   const [todos, setTodos] = useState(["todo1", "todo2"]);
+  const [newTodo, setNewTodo] = useState("");
 
   function handleAdd(e) {
     e.preventDefault();
-    setTodos([...todos, e.target.value]);
+    setTodos([...todos, newTodo]);
+    setNewTodo("");
   }
   function handleDelete() {
     setTodos(todos.slice(0, -1));
@@ -14,13 +16,15 @@ function TodoList() {
 
   return (
     <>
-      <form>
+      <form onSubmit={handleAdd}>
         <input
           type="text"
           className="border-2"
           placeholder="Add your new Todo..."
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
         />
-        <button onSubmit={handleAdd}>Add todo</button>
+        <button type="submit">Add todo</button>
       </form>
       <ul>
         {todos.map((todo, index) => (
