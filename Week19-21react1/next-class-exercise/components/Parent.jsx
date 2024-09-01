@@ -10,10 +10,7 @@ function Parent() {
 
   return (
     <div>
-      <button onClick={handleChange} className="bg-stone-300">
-        Change Color 👇
-      </button>
-      <Child bgColor={color}></Child>
+      <Child bgColor={color} handleChange={handleChange}></Child>
     </div>
   );
 }
