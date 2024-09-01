@@ -1,5 +1,5 @@
-function Child() {
-  return <div>Some Context</div>;
+function Child({ bgColor }) {
+  return <p className={bgColor}>Some Context</p>
 }
 
 export default Child;
