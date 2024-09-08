@@ -10,13 +10,14 @@ function TodoList() {
     setTodos([...todos, newTodo]);
     setNewTodo("");
   }
-  function handleDelete() {
-    setTodos(todos.slice(0, -1));
+  function handleDelete(todoTitle) {
+    const newTodos = todos.filter((todo) => todo !== todoTitle);
+    setTodos(newTodos);
   }
 
   return (
     <>
-      <form onSubmit={handleAdd}>
+      <form onSubmit={handleAdd} className="mt-6">
         <input
           type="text"
           className="border-2"
@@ -28,16 +29,16 @@ function TodoList() {
           Add todo
         </button>
       </form>
-      <ul>
+      <ul className="mb-6">
         {todos.map((todo, index) => (
           <li key={index} className="list-disc">
             {todo}
+            <button className="bg-green-300" onClick={() => handleDelete(todo)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
-      <button className="bg-rose-300" onClick={handleDelete}>
-        Delete todo
-      </button>
     </>
   );
 }
