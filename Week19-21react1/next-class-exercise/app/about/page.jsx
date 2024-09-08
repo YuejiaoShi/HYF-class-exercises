@@ -2,6 +2,7 @@
 
 import Button from "@/components/Button";
 import Card from "@/components/Card";
+import Clock from "@/components/Clock";
 import Counter from "@/components/Counter";
 import Layout from "@/components/Layout";
 import Parent from "@/components/Parent";
@@ -42,6 +43,7 @@ function About() {
         <Counter />
         <SimpleForm />
         <TodoList />
+        <Clock />
         <Parent />
       </Layout>
     </>
