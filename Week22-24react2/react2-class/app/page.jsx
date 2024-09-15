@@ -11,6 +11,7 @@ export default function Home() {
       <h1>Welcome to my page</h1>
 
       <button onClick={() => router.push("/notes")}>Go to notes</button>
+      <button onClick={() => router.push("/form")}>Go to form</button>
     </div>
   );
 }
