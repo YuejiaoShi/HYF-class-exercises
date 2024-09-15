@@ -7,6 +7,7 @@ function NotesPage() {
   const handleChange = (event) => {
     event.preventDefault();
     setForm({ ...form, [event.target.name]: event.target.value });
+    console.log(form);
   };
 
   return (
