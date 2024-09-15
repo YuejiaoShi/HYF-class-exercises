@@ -14,7 +14,7 @@ function NotesPage() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/notes/${form.noteId}`);
+    router.push(`/notes/${form.noteId}?notetaker=${form.noteTaker}`);
   };
 
   return (
