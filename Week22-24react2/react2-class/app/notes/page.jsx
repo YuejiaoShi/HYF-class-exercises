@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function NotesPage() {
@@ -8,6 +9,12 @@ function NotesPage() {
     event.preventDefault();
     setForm({ ...form, [event.target.name]: event.target.value });
     console.log(form);
+  };
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/notes/${form.noteId}`);
   };
 
   return (
@@ -31,7 +38,7 @@ function NotesPage() {
         onChange={handleChange}
       ></input>
 
-      <button type="submit">Go to note</button>
+      <button onClick={handleClick}>Go to note</button>
     </main>
   );
 }
