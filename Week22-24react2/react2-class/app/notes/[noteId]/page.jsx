@@ -1,14 +1,17 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 function Note({ params }) {
   const path = usePathname();
+  const query = useSearchParams();
+
 
   return (
     <main>
-      {path}
-      {JSON.stringify(params)}
+      <p>{path}</p>
+      <p>{JSON.stringify(params)}</p>
+      <p>{query.get("notemaker")}</p>
     </main>
   );
 }
