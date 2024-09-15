@@ -2,10 +2,15 @@
 
 import { usePathname } from "next/navigation";
 
-function Note() {
+function Note({ params }) {
   const path = usePathname();
 
-  return <main>{path}</main>;
+  return (
+    <main>
+      {path}
+      {JSON.stringify(params)}
+    </main>
+  );
 }
 
 export default Note;
