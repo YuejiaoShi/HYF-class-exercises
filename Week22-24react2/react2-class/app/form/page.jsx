@@ -8,17 +8,36 @@ function FormPage() {
   const authorRef = useRef(null);
   const dateRef = useRef(null);
 
+  const refs = {
+    title: titleRef,
+    content: contentRef,
+    author: authorRef,
+    date: dateRef,
+  };
+
   const clickTitle = () => {
     if (titleRef.current) {
       titleRef.current.focus();
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = {};
+    for (let key in refs) {
+      formData[key] = refs[key].current.value;
+    }
+    console.log(formData);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h1>Take a Note</h1>
-      <label htmlFor="title">Note Title: </label>
-      <input ref={titleRef} type="text" name="title" id="title" />
+      <label onClick={clickTitle} htmlFor="title">
+        Note Title:
+      </label>
+      <input ref={titleRef} type="text" name="title" id="title" required />
       <br className="formbr" />
       <label htmlFor="content">Note Content: </label>
       <textarea
@@ -28,13 +47,14 @@ function FormPage() {
         id="content"
         rows={10}
         cols={50}
+        required
       />
       <br className="formbr" />
       <label htmlFor="author">Note Author: </label>
-      <input ref={authorRef} x type="text" name="author" id="author" />
+      <input ref={authorRef} type="text" name="author" id="author" required />
       <br className="formbr" />
       <label htmlFor="date">Note Date: </label>
-      <input ref={dateRef} type="date" name="date" id="date" />
+      <input ref={dateRef} type="date" name="date" id="date" required />
       <br className="formbr" />
       <button type="submit">Submit Note</button>
     </form>
