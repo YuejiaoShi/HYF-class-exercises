@@ -18,6 +18,7 @@ function NotesPage() {
         name="noteTaker"
         id="notes-taker"
         type="text"
+        value={form.noteTaker}
         onChange={handleChange}
       ></input>
 
@@ -26,6 +27,7 @@ function NotesPage() {
         name="noteId"
         id="note-id"
         type="text"
+        value={form.noteId}
         onChange={handleChange}
       ></input>
 
