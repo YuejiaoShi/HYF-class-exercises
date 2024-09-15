@@ -11,10 +11,10 @@ function Note({ params }) {
     <main>
       <p>{path}</p>
       <p>{JSON.stringify(params)}</p>
-      <p>{query.get("notemaker")}</p>
+      <p>{query.get("notetaker")}</p>
       <div>
-        {query.getAll("notemaker").map((notemaker) => (
-          <p>{notemaker}</p>
+        {query.getAll("notetaker").map((notetaker) => (
+          <p>{notetaker}</p>
         ))}
       </div>
       <p>{JSON.stringify(allQuery)}</p>
